@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.keywordstone.framework.common.basic.utils.TokenUtils,\
+  com.keywordstone.framework.common.basic.config.AsyncTaskConfig,\
+  com.keywordstone.framework.common.basic.config.MultipartConfig

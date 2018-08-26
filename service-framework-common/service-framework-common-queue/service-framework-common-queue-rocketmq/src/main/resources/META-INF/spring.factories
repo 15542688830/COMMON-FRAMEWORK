@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.keywordstone.framework.common.queue.rocketmq.client.RocketMqConfig,\
+  com.keywordstone.framework.common.queue.rocketmq.client.RocketMqProperties

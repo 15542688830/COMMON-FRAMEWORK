@@ -1,0 +1,37 @@
+server:
+#  port: 18089
+  port: 18090
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.200.202:18081/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.200.202:3306/flowable?characterEncoding=utf8&useSSL=false
+    username: contract1
+    password: contract1
+  redis:
+    pool:
+      max-active: 5000
+      max-idle: 2000
+      max-wait: 10000
+      min-idle: 0
+    host: 192.168.200.201
+    port: 6379
+  cache:
+    type: redis
+flowable:
+  check-process-definitions: false
+  contract-deploy: false
+  borrow-deploy: false
+  version: 1
+logging:
+  level: error
+  file: ${spring.application.name}.log
+rocketmq:
+  namesrvaddr:
+     - 192.168.200.204:9876

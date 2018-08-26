@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.keywordstone.framework.common.mongo.config.MongoConfig,\
+  com.keywordstone.framework.common.mongo.config.MongoProperties

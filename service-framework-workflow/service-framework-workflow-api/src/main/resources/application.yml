@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: service-framework-workflow
+#    name: service-framework-workflowSSS
+# 自定义
+swagger:
+  ui:
+    basePackage: com.keywordstone.framework.workflow.api.controller

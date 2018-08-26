@@ -1,0 +1,56 @@
+server:
+  port: 18083
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.200.202:18081/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+spring:
+  redis:
+    pool:
+      max-active: 5000
+      max-idle: 2000
+      max-wait: 10000
+      min-idle: 0
+#    cluster:
+#      nodes:
+#        - 192.168.200.202:7001
+#        - 192.168.200.202:7002
+#        - 192.168.200.202:7003
+#        - 192.168.200.202:7004
+#        - 192.168.200.202:7005
+#        - 192.168.200.202:7006
+    host: 192.168.200.201
+    port: 6379
+zuul:
+  routes:
+    contractMangement-contract:
+      path: /contract-base/**
+      serviceId: contractmanagement-contract
+    contractMangement-usercenter:
+      path: /usercenter-base/**
+      serviceId: contractmanagement-usercenter
+    contractMangement-file:
+      path: /file-base/**
+      serviceId: contractmanagement-file
+    contractMangement-notice:
+      path: /notice-base/**
+      serviceId: contractmanagement-notice
+  host:
+    connect-timeout-millis: 5000
+    socket-timeout-millis: 10000
+ribbon:
+  ReadTimeout: 5000
+  SocketTimeout: 10000
+ignored:
+  urls:
+    token:
+      - /file-base/file/downloadfile
+      - /file-base/file/downloadFiles
+      - /file-base/file/downloadCountFiles
+#自定义
+token:
+  default:
+    timeout: 86400

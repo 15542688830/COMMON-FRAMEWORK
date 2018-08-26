@@ -1,0 +1,27 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.keywordstone.framework.common.mongo.config.MongoProperties",
+      "name": "mongodb",
+      "type": "com.keywordstone.framework.common.mongo.config.MongoProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.keywordstone.framework.common.mongo.config.MongoProperties",
+      "name": "mongodb.hostAndPorts",
+      "type": "java.util.List<java.lang.String>"
+    },
+    {
+      "sourceType": "com.keywordstone.framework.common.mongo.config.MongoProperties",
+      "name": "mongodb.username",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.keywordstone.framework.common.mongo.config.MongoProperties",
+      "name": "mongodb.password",
+      "type": "java.lang.String"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>service-framework</artifactId>
+        <groupId>com.keywordstone.framework</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>service-framework-common</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>service-framework-common-database</module>
+        <module>service-framework-common-container</module>
+        <module>service-framework-common-cache</module>
+        <module>service-framework-common-starter</module>
+        <module>service-framework-common-security</module>
+        <module>service-framework-common-swagger</module>
+        <module>service-framework-common-basic</module>
+        <module>service-framework-common-nosql</module>
+        <module>service-framework-common-feign</module>
+        <module>service-framework-common-queue</module>
+    </modules>
+
+    <properties>
+        <fastjson.version>1.2.44</fastjson.version>
+        <lang3.version>3.7</lang3.version>
+        <beanutils.version>1.9.3</beanutils.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${lang3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>${beanutils.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

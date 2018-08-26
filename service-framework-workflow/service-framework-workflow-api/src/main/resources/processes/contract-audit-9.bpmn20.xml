@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flowable="http://flowable.org/bpmn"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath"
+             targetNamespace="http://flowable.org/test">
+  <process id="contract-audit-9" name="合同内部审核" isExecutable="true">
+    <endEvent id="EndEvent_0a9ry6h" name="合同流程放弃">
+      <extensionElements>
+        <flowable:executionListener event="start" class="com.keywordstone.framework.workflow.api.listener.EndEventListener"></flowable:executionListener>
+      </extensionElements>
+      <terminateEventDefinition></terminateEventDefinition>
+    </endEvent>
+    <exclusiveGateway id="ExclusiveGateway_1sz69f1"></exclusiveGateway>
+    <userTask id="Task_1c19jqq" name="合同修改" flowable:assignee="${INITIATOR}">
+      <extensionElements>
+        <flowable:taskListener event="create" class="com.keywordstone.framework.workflow.api.listener.UserTaskListener"></flowable:taskListener>
+        <modeler:initiator-can-complete xmlns:modeler="http://flowable.org/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
+      </extensionElements>
+    </userTask>
+    <exclusiveGateway id="ExclusiveGateway_0khzgmq"></exclusiveGateway>
+    <startEvent id="StartEvent_1" name="合同流程开始" flowable:initiator="INITIATOR"></startEvent>
+    <endEvent id="EndEvent_028n2pd" name="合同流程结束">
+      <extensionElements>
+        <flowable:executionListener event="start" class="com.keywordstone.framework.workflow.api.listener.EndEventListener"></flowable:executionListener>
+      </extensionElements>
+      <terminateEventDefinition></terminateEventDefinition>
+    </endEvent>
+    <userTask id="Task_1d0521q" name="商户开户">
+      <extensionElements>
+        <flowable:taskListener event="create" class="com.keywordstone.framework.workflow.api.listener.UserTaskListener"></flowable:taskListener>
+      </extensionElements>
+    </userTask>
+    <userTask id="Task_0fbk2pr" name="产品上线">
+      <extensionElements>
+        <flowable:taskListener event="create" class="com.keywordstone.framework.workflow.api.listener.UserTaskListener"></flowable:taskListener>
+      </extensionElements>
+    </userTask>
+    <parallelGateway id="ExclusiveGateway_1xobbvl" name="会审通过"></parallelGateway>
+    <exclusiveGateway id="ExclusiveGateway_01ran20"></exclusiveGateway>
+    <exclusiveGateway id="ExclusiveGateway_12viuku"></exclusiveGateway>
+    <userTask id="Task_0kzj42c" name="费率核对">
+      <extensionElements>
+        <flowable:taskListener event="create" class="com.keywordstone.framework.workflow.api.listener.UserTaskListener"></flowable:taskListener>
+      </extensionElements>
+    </userTask>
+    <exclusiveGateway id="ExclusiveGateway_1lv1uxc"></exclusiveGateway>
+    <exclusiveGateway id="ExclusiveGateway_1xs0nl0"></exclusiveGateway>
+    <exclusiveGateway id="ExclusiveGateway_0jjbokk"></exclusiveGateway>
+    <userTask id="Task_12oo6yo" name="合同条款评审">
+      <extensionElements>
+        <flowable:taskListener event="create" class="com.keywordstone.framework.workflow.api.listener.UserTaskListener"></flowable:taskListener>
+      </extensionElements>
+    </userTask>
+    <userTask id="Task_076s3ht" name="结算方式评审">
+      <extensionElements>
+        <flowable:taskListener event="create" class="com.keywordstone.framework.workflow.api.listener.UserTaskListener"></flowable:taskListener>
+      </extensionElements>
+    </userTask>
+    <parallelGateway id="ExclusiveGateway_0nx8ec1" name="会审"></parallelGateway>
+    <userTask id="Task_09mz9uf" name="商户资质评审">
+      <extensionElements>
+        <flowable:taskListener event="create" class="com.keywordstone.framework.workflow.api.listener.UserTaskListener"></flowable:taskListener>
+      </extensionElements>
+    </userTask>
+    <userTask id="Task_077q4ct" name="产品费率评审">
+      <extensionElements>
+        <flowable:taskListener event="create" class="com.keywordstone.framework.workflow.api.listener.UserTaskListener"></flowable:taskListener>
+      </extensionElements>
+    </userTask>
+    <userTask id="Task_0rgw1a1" name="合同缔结" flowable:assignee="${INITIATOR}">
+      <extensionElements>
+        <flowable:taskListener event="create" class="com.keywordstone.framework.workflow.api.listener.UserTaskListener"></flowable:taskListener>
+        <modeler:initiator-can-complete xmlns:modeler="http://flowable.org/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
+      </extensionElements>
+    </userTask>
+    <userTask id="Task_1bof1gc" name="提交商户评审" flowable:assignee="${INITIATOR}">
+      <extensionElements>
+        <flowable:taskListener event="create" class="com.keywordstone.framework.workflow.api.listener.UserTaskListener"></flowable:taskListener>
+        <modeler:initiator-can-complete xmlns:modeler="http://flowable.org/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="SequenceFlow_0dbr300" sourceRef="Task_09mz9uf" targetRef="ExclusiveGateway_0jjbokk"></sequenceFlow>
+    <sequenceFlow id="SequenceFlow_1146o74" sourceRef="Task_076s3ht" targetRef="ExclusiveGateway_1lv1uxc"></sequenceFlow>
+    <sequenceFlow id="SequenceFlow_1q0lybl" sourceRef="Task_0kzj42c" targetRef="ExclusiveGateway_12viuku"></sequenceFlow>
+    <sequenceFlow id="SequenceFlow_0q2x4z3" sourceRef="Task_12oo6yo" targetRef="ExclusiveGateway_01ran20"></sequenceFlow>
+    <sequenceFlow id="SequenceFlow_112i8ip" sourceRef="ExclusiveGateway_1xobbvl" targetRef="Task_1d0521q"></sequenceFlow>
+    <sequenceFlow id="SequenceFlow_0ng9f5p" sourceRef="ExclusiveGateway_1xobbvl" targetRef="Task_1bof1gc"></sequenceFlow>
+    <sequenceFlow id="SequenceFlow_1rbw7fc" sourceRef="sid-723FA3B8-61E9-41A8-AD2E-42177791D34E" targetRef="EndEvent_028n2pd"></sequenceFlow>
+    <sequenceFlow id="SequenceFlow_0ghw6bt" sourceRef="ExclusiveGateway_0nx8ec1" targetRef="Task_077q4ct"></sequenceFlow>
+    <sequenceFlow id="SequenceFlow_0q8ym30" sourceRef="ExclusiveGateway_0nx8ec1" targetRef="Task_09mz9uf"></sequenceFlow>
+    <sequenceFlow id="SequenceFlow_01npzip" sourceRef="ExclusiveGateway_0nx8ec1" targetRef="Task_076s3ht"></sequenceFlow>
+    <sequenceFlow id="SequenceFlow_1nlk1s1" sourceRef="ExclusiveGateway_0nx8ec1" targetRef="Task_12oo6yo"></sequenceFlow>
+    <sequenceFlow id="SequenceFlow_04tmppj" sourceRef="Task_0rgw1a1" targetRef="Task_0kzj42c"></sequenceFlow>
+    <sequenceFlow id="SequenceFlow_086po8q" sourceRef="StartEvent_1" targetRef="ExclusiveGateway_0nx8ec1"></sequenceFlow>
+    <sequenceFlow id="SequenceFlow_11937x1" sourceRef="Task_1bof1gc" targetRef="ExclusiveGateway_1sz69f1"></sequenceFlow>
+    <sequenceFlow id="SequenceFlow_1e9ygak" sourceRef="Task_1c19jqq" targetRef="ExclusiveGateway_0khzgmq"></sequenceFlow>
+    <sequenceFlow id="SequenceFlow_1t31gh1" sourceRef="Task_077q4ct" targetRef="ExclusiveGateway_1xs0nl0"></sequenceFlow>
+    <sequenceFlow id="SequenceFlow_1e2tq3l" name="拒绝" sourceRef="ExclusiveGateway_1xs0nl0" targetRef="Task_1c19jqq">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${Task_077q4ct=='Task_1c19jqq'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="SequenceFlow_1pjxvbo" name="拒绝" sourceRef="ExclusiveGateway_1lv1uxc" targetRef="Task_1c19jqq">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${Task_076s3ht=='Task_1c19jqq'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="SequenceFlow_1f1cg0g" name="拒绝" sourceRef="ExclusiveGateway_01ran20" targetRef="Task_1c19jqq">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${Task_12oo6yo=='Task_1c19jqq'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="SequenceFlow_0whbyzl" name="拒绝" sourceRef="ExclusiveGateway_0jjbokk" targetRef="Task_1c19jqq">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${Task_09mz9uf=='Task_1c19jqq'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-4AA9A563-F09C-4598-B4A7-09F43F9EF409" name="产品费率修改完成" sourceRef="ExclusiveGateway_0khzgmq" targetRef="Task_077q4ct">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${Task_1c19jqq=='Task_077q4ct'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-D3A7ADA7-6A98-4BF4-AAB7-E414C86C711D" name="商户资质修改完成" sourceRef="ExclusiveGateway_0khzgmq" targetRef="Task_09mz9uf">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${Task_1c19jqq=='Task_09mz9uf'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-A9DC5568-3A06-4436-A54F-2E9B0104C72C" name="结算方式修改完成" sourceRef="ExclusiveGateway_0khzgmq" targetRef="Task_076s3ht">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${Task_1c19jqq=='Task_076s3ht'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-46262154-438D-4DA7-9DF7-C67577C1A0BF" name="合同条款修改完成" sourceRef="ExclusiveGateway_0khzgmq" targetRef="Task_12oo6yo">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${Task_1c19jqq=='Task_12oo6yo'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="SequenceFlow_1p38ezt" name="拒绝" sourceRef="ExclusiveGateway_0khzgmq" targetRef="EndEvent_0a9ry6h">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${Task_1c19jqq=='Task_1c19jqq'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="SequenceFlow_174qx6p" name="通过" sourceRef="ExclusiveGateway_1xs0nl0" targetRef="ExclusiveGateway_1xobbvl">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${Task_077q4ct=='Task_077q4ct'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="SequenceFlow_1wmw8yl" name="通过" sourceRef="ExclusiveGateway_0jjbokk" targetRef="ExclusiveGateway_1xobbvl">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${Task_09mz9uf=='Task_09mz9uf'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="SequenceFlow_132yhhj" name="通过" sourceRef="ExclusiveGateway_1lv1uxc" targetRef="ExclusiveGateway_1xobbvl">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${Task_076s3ht=='Task_076s3ht'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="SequenceFlow_1dvdl9n" name="通过" sourceRef="ExclusiveGateway_01ran20" targetRef="ExclusiveGateway_1xobbvl">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${Task_12oo6yo=='Task_12oo6yo'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="SequenceFlow_0tdf88g" name="拒绝" sourceRef="ExclusiveGateway_1sz69f1" targetRef="EndEvent_0a9ry6h">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${SequenceFlow_11937x1==2}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="SequenceFlow_090njzy" name="通过" sourceRef="ExclusiveGateway_1sz69f1" targetRef="Task_0rgw1a1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${SequenceFlow_11937x1==1}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="SequenceFlow_0qn0o2r" name="拒绝" sourceRef="ExclusiveGateway_12viuku" targetRef="EndEvent_0a9ry6h">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${SequenceFlow_1q0lybl==2}]]></conditionExpression>
+    </sequenceFlow>
+    <parallelGateway id="sid-2D171FA7-7581-4F13-B757-7B592020DD11"></parallelGateway>
+    <userTask id="sid-7DE48640-425E-4961-9BCA-585B927DE664" name="合同核对">
+      <extensionElements>
+        <flowable:taskListener event="create" class="com.keywordstone.framework.workflow.api.listener.UserTaskListener"></flowable:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="sid-E8B020DF-E6B2-453D-884B-618B17564F74" sourceRef="sid-2D171FA7-7581-4F13-B757-7B592020DD11" targetRef="sid-7DE48640-425E-4961-9BCA-585B927DE664"></sequenceFlow>
+    <sequenceFlow id="SequenceFlow_0mbu75y" sourceRef="sid-2D171FA7-7581-4F13-B757-7B592020DD11" targetRef="Task_0fbk2pr"></sequenceFlow>
+    <sequenceFlow id="sid-4578DB9C-1350-49C3-8AF8-D1624BD81AAD" name="通过" sourceRef="ExclusiveGateway_12viuku" targetRef="sid-2D171FA7-7581-4F13-B757-7B592020DD11">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${SequenceFlow_1q0lybl==1}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="sid-723FA3B8-61E9-41A8-AD2E-42177791D34E" name="合同归档">
+      <extensionElements>
+        <flowable:taskListener event="create" class="com.keywordstone.framework.workflow.api.listener.UserTaskListener"></flowable:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="sid-0BBC5E3D-764B-49A3-B6ED-AD7753D1FA93" sourceRef="sid-7DE48640-425E-4961-9BCA-585B927DE664" targetRef="sid-723FA3B8-61E9-41A8-AD2E-42177791D34E"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_contract-audit-1">
+    <bpmndi:BPMNPlane bpmnElement="contract-audit-1" id="BPMNPlane_contract-audit-1">
+      <bpmndi:BPMNShape bpmnElement="EndEvent_0a9ry6h" id="BPMNShape_EndEvent_0a9ry6h">
+        <omgdc:Bounds height="28.0" width="28.0" x="1510.0" y="129.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ExclusiveGateway_1sz69f1" id="BPMNShape_ExclusiveGateway_1sz69f1">
+        <omgdc:Bounds height="40.0" width="40.0" x="1129.0" y="39.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="Task_1c19jqq" id="BPMNShape_Task_1c19jqq">
+        <omgdc:Bounds height="80.0" width="100.0" x="795.0" y="210.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ExclusiveGateway_0khzgmq" id="BPMNShape_ExclusiveGateway_0khzgmq">
+        <omgdc:Bounds height="40.0" width="40.0" x="681.0" y="123.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="StartEvent_1" id="BPMNShape_StartEvent_1">
+        <omgdc:Bounds height="30.0" width="30.0" x="25.0" y="247.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="EndEvent_028n2pd" id="BPMNShape_EndEvent_028n2pd">
+        <omgdc:Bounds height="28.0" width="28.0" x="1681.0" y="822.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="Task_1d0521q" id="BPMNShape_Task_1d0521q">
+        <omgdc:Bounds height="80.0" width="100.0" x="932.0" y="796.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="Task_0fbk2pr" id="BPMNShape_Task_0fbk2pr">
+        <omgdc:Bounds height="80.0" width="100.0" x="1385.0" y="796.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ExclusiveGateway_1xobbvl" id="BPMNShape_ExclusiveGateway_1xobbvl">
+        <omgdc:Bounds height="40.0" width="40.0" x="962.0" y="698.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ExclusiveGateway_01ran20" id="BPMNShape_ExclusiveGateway_01ran20">
+        <omgdc:Bounds height="40.0" width="40.0" x="681.0" y="698.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ExclusiveGateway_12viuku" id="BPMNShape_ExclusiveGateway_12viuku">
+        <omgdc:Bounds height="40.0" width="40.0" x="1310.0" y="584.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="Task_0kzj42c" id="BPMNShape_Task_0kzj42c">
+        <omgdc:Bounds height="80.0" width="100.0" x="1099.0" y="564.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ExclusiveGateway_1lv1uxc" id="BPMNShape_ExclusiveGateway_1lv1uxc">
+        <omgdc:Bounds height="40.0" width="40.0" x="681.0" y="584.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ExclusiveGateway_1xs0nl0" id="BPMNShape_ExclusiveGateway_1xs0nl0">
+        <omgdc:Bounds height="40.0" width="40.0" x="681.0" y="369.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ExclusiveGateway_0jjbokk" id="BPMNShape_ExclusiveGateway_0jjbokk">
+        <omgdc:Bounds height="40.0" width="40.0" x="681.0" y="474.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="Task_12oo6yo" id="BPMNShape_Task_12oo6yo">
+        <omgdc:Bounds height="80.0" width="100.0" x="376.0" y="678.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="Task_076s3ht" id="BPMNShape_Task_076s3ht">
+        <omgdc:Bounds height="80.0" width="100.0" x="376.0" y="564.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ExclusiveGateway_0nx8ec1" id="BPMNShape_ExclusiveGateway_0nx8ec1">
+        <omgdc:Bounds height="40.0" width="40.0" x="276.0" y="242.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="Task_09mz9uf" id="BPMNShape_Task_09mz9uf">
+        <omgdc:Bounds height="80.0" width="100.0" x="376.0" y="454.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="Task_077q4ct" id="BPMNShape_Task_077q4ct">
+        <omgdc:Bounds height="80.0" width="100.0" x="376.0" y="349.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="Task_0rgw1a1" id="BPMNShape_Task_0rgw1a1">
+        <omgdc:Bounds height="80.0" width="100.0" x="1099.0" y="222.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="Task_1bof1gc" id="BPMNShape_Task_1bof1gc">
+        <omgdc:Bounds height="80.0" width="100.0" x="932.0" y="19.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-2D171FA7-7581-4F13-B757-7B592020DD11" id="BPMNShape_sid-2D171FA7-7581-4F13-B757-7B592020DD11">
+        <omgdc:Bounds height="40.0" width="40.0" x="1415.0" y="584.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-7DE48640-425E-4961-9BCA-585B927DE664" id="BPMNShape_sid-7DE48640-425E-4961-9BCA-585B927DE664">
+        <omgdc:Bounds height="80.0" width="100.0" x="1500.0" y="564.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-723FA3B8-61E9-41A8-AD2E-42177791D34E" id="BPMNShape_sid-723FA3B8-61E9-41A8-AD2E-42177791D34E">
+        <omgdc:Bounds height="80.0" width="100.0" x="1645.0" y="564.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_1e9ygak" id="BPMNEdge_SequenceFlow_1e9ygak">
+        <omgdi:waypoint x="795.0" y="250.0"></omgdi:waypoint>
+        <omgdi:waypoint x="701.0" y="250.0"></omgdi:waypoint>
+        <omgdi:waypoint x="701.0" y="163.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_0tdf88g" id="BPMNEdge_SequenceFlow_0tdf88g">
+        <omgdi:waypoint x="1169.0" y="59.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1524.0" y="59.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1524.0" y="129.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_0q2x4z3" id="BPMNEdge_SequenceFlow_0q2x4z3">
+        <omgdi:waypoint x="476.0" y="718.0"></omgdi:waypoint>
+        <omgdi:waypoint x="681.0" y="718.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_1wmw8yl" id="BPMNEdge_SequenceFlow_1wmw8yl">
+        <omgdi:waypoint x="712.1287128712871" y="502.8712871287129"></omgdi:waypoint>
+        <omgdi:waypoint x="970.8712871287129" y="709.1287128712871"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_132yhhj" id="BPMNEdge_SequenceFlow_132yhhj">
+        <omgdi:waypoint x="715.2278481012659" y="609.7721518987341"></omgdi:waypoint>
+        <omgdi:waypoint x="967.7721518987341" y="712.2278481012659"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_1t31gh1" id="BPMNEdge_SequenceFlow_1t31gh1">
+        <omgdi:waypoint x="476.0" y="389.0"></omgdi:waypoint>
+        <omgdi:waypoint x="681.0" y="389.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-46262154-438D-4DA7-9DF7-C67577C1A0BF" id="BPMNEdge_sid-46262154-438D-4DA7-9DF7-C67577C1A0BF">
+        <omgdi:waypoint x="694.5294117647059" y="156.52941176470588"></omgdi:waypoint>
+        <omgdi:waypoint x="445.1304347826087" y="678.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_1e2tq3l" id="BPMNEdge_SequenceFlow_1e2tq3l">
+        <omgdi:waypoint x="711.1766784452296" y="379.1766784452297"></omgdi:waypoint>
+        <omgdi:waypoint x="803.5611510791367" y="290.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_1f1cg0g" id="BPMNEdge_SequenceFlow_1f1cg0g">
+        <omgdi:waypoint x="705.7058823529412" y="702.7058823529412"></omgdi:waypoint>
+        <omgdi:waypoint x="832.6923076923077" y="290.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-0BBC5E3D-764B-49A3-B6ED-AD7753D1FA93" id="BPMNEdge_sid-0BBC5E3D-764B-49A3-B6ED-AD7753D1FA93">
+        <omgdi:waypoint x="1600.0" y="604.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1645.0" y="604.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_1rbw7fc" id="BPMNEdge_SequenceFlow_1rbw7fc">
+        <omgdi:waypoint x="1695.0" y="644.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1695.0" y="822.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_1nlk1s1" id="BPMNEdge_SequenceFlow_1nlk1s1">
+        <omgdi:waypoint x="296.0" y="282.0"></omgdi:waypoint>
+        <omgdi:waypoint x="296.0" y="718.0"></omgdi:waypoint>
+        <omgdi:waypoint x="376.0" y="718.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_0qn0o2r" id="BPMNEdge_SequenceFlow_0qn0o2r">
+        <omgdi:waypoint x="1330.0" y="584.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1330.0" y="143.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1510.0" y="143.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_1q0lybl" id="BPMNEdge_SequenceFlow_1q0lybl">
+        <omgdi:waypoint x="1199.0" y="604.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1310.0" y="604.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_0ghw6bt" id="BPMNEdge_SequenceFlow_0ghw6bt">
+        <omgdi:waypoint x="296.0" y="282.0"></omgdi:waypoint>
+        <omgdi:waypoint x="296.0" y="389.0"></omgdi:waypoint>
+        <omgdi:waypoint x="376.0" y="389.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_11937x1" id="BPMNEdge_SequenceFlow_11937x1">
+        <omgdi:waypoint x="1032.0" y="59.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1129.0" y="59.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_0whbyzl" id="BPMNEdge_SequenceFlow_0whbyzl">
+        <omgdi:waypoint x="708.4226804123712" y="481.4226804123711"></omgdi:waypoint>
+        <omgdi:waypoint x="821.3934426229508" y="290.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_174qx6p" id="BPMNEdge_SequenceFlow_174qx6p">
+        <omgdi:waypoint x="710.2131147540983" y="399.78688524590166"></omgdi:waypoint>
+        <omgdi:waypoint x="972.7868852459017" y="707.2131147540983"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-4AA9A563-F09C-4598-B4A7-09F43F9EF409" id="BPMNEdge_sid-4AA9A563-F09C-4598-B4A7-09F43F9EF409">
+        <omgdi:waypoint x="690.4433781190019" y="152.44337811900192"></omgdi:waypoint>
+        <omgdi:waypoint x="470.7154471544716" y="349.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-E8B020DF-E6B2-453D-884B-618B17564F74" id="BPMNEdge_sid-E8B020DF-E6B2-453D-884B-618B17564F74">
+        <omgdi:waypoint x="1455.0" y="604.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1500.0" y="604.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_1pjxvbo" id="BPMNEdge_SequenceFlow_1pjxvbo">
+        <omgdi:waypoint x="706.7831325301205" y="589.7831325301205"></omgdi:waypoint>
+        <omgdi:waypoint x="828.728813559322" y="290.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-D3A7ADA7-6A98-4BF4-AAB7-E414C86C711D" id="BPMNEdge_sid-D3A7ADA7-6A98-4BF4-AAB7-E414C86C711D">
+        <omgdi:waypoint x="692.2140575079873" y="154.2140575079872"></omgdi:waypoint>
+        <omgdi:waypoint x="457.33903133903135" y="454.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_090njzy" id="BPMNEdge_SequenceFlow_090njzy">
+        <omgdi:waypoint x="1149.0" y="79.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1149.0" y="222.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-4578DB9C-1350-49C3-8AF8-D1624BD81AAD" id="BPMNEdge_sid-4578DB9C-1350-49C3-8AF8-D1624BD81AAD">
+        <omgdi:waypoint x="1350.0" y="604.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1415.0" y="604.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_086po8q" id="BPMNEdge_SequenceFlow_086po8q">
+        <omgdi:waypoint x="55.0" y="262.0"></omgdi:waypoint>
+        <omgdi:waypoint x="276.0" y="262.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_1p38ezt" id="BPMNEdge_SequenceFlow_1p38ezt">
+        <omgdi:waypoint x="721.0" y="143.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1510.0" y="143.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_0dbr300" id="BPMNEdge_SequenceFlow_0dbr300">
+        <omgdi:waypoint x="476.0" y="494.0"></omgdi:waypoint>
+        <omgdi:waypoint x="681.0" y="494.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_0q8ym30" id="BPMNEdge_SequenceFlow_0q8ym30">
+        <omgdi:waypoint x="296.0" y="282.0"></omgdi:waypoint>
+        <omgdi:waypoint x="296.0" y="494.0"></omgdi:waypoint>
+        <omgdi:waypoint x="376.0" y="494.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_112i8ip" id="BPMNEdge_SequenceFlow_112i8ip">
+        <omgdi:waypoint x="982.0" y="738.0"></omgdi:waypoint>
+        <omgdi:waypoint x="982.0" y="796.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_0ng9f5p" id="BPMNEdge_SequenceFlow_0ng9f5p">
+        <omgdi:waypoint x="982.0" y="698.0"></omgdi:waypoint>
+        <omgdi:waypoint x="982.0" y="99.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_1146o74" id="BPMNEdge_SequenceFlow_1146o74">
+        <omgdi:waypoint x="476.0" y="604.0"></omgdi:waypoint>
+        <omgdi:waypoint x="681.0" y="604.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_0mbu75y" id="BPMNEdge_SequenceFlow_0mbu75y">
+        <omgdi:waypoint x="1435.0" y="624.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1435.0" y="796.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_01npzip" id="BPMNEdge_SequenceFlow_01npzip">
+        <omgdi:waypoint x="296.0" y="282.0"></omgdi:waypoint>
+        <omgdi:waypoint x="296.0" y="604.0"></omgdi:waypoint>
+        <omgdi:waypoint x="376.0" y="604.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_04tmppj" id="BPMNEdge_SequenceFlow_04tmppj">
+        <omgdi:waypoint x="1149.0" y="302.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1149.0" y="564.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-A9DC5568-3A06-4436-A54F-2E9B0104C72C" id="BPMNEdge_sid-A9DC5568-3A06-4436-A54F-2E9B0104C72C">
+        <omgdi:waypoint x="693.5271739130435" y="155.52717391304347"></omgdi:waypoint>
+        <omgdi:waypoint x="449.86117136659436" y="564.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_1dvdl9n" id="BPMNEdge_SequenceFlow_1dvdl9n">
+        <omgdi:waypoint x="721.0" y="718.0"></omgdi:waypoint>
+        <omgdi:waypoint x="962.0" y="718.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

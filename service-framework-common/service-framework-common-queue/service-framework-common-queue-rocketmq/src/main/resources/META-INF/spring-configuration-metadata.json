@@ -1,0 +1,17 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.keywordstone.framework.common.queue.rocketmq.client.RocketMqProperties",
+      "name": "rocketmq",
+      "type": "com.keywordstone.framework.common.queue.rocketmq.client.RocketMqProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.keywordstone.framework.common.queue.rocketmq.client.RocketMqProperties",
+      "name": "rocketmq.namesrvaddr",
+      "type": "java.util.List<java.lang.String>"
+    }
+  ]
+}
